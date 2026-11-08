@@ -1,0 +1,9 @@
+# 系统 / 编辑器临时文件
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+*.log
+*.bak
+
+# 注意：本仓库刻意跟踪 .exe（它就是发布物），不要添加 *.exe 规则
