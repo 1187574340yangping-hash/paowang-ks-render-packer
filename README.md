@@ -106,7 +106,18 @@ A：没有，这个仓库只发布成品 exe。
 python bip_to_ksp.py -i "模型目录" -o "KSP输出" -a "KS文件夹" --dry-run
 ```
 
-## 工作原理
+## 工作原理（图解）
+
+```mermaid
+flowchart LR
+    A[".bip 场景文件"] --> B["扫描 .bip 二进制<br/>提取贴图 / HDR / PSD 引用路径"]
+    C["资源目录<br/>KS / textures / maps"] --> D["按完整路径定位资源"]
+    B --> D
+    A --> E["打包成 .ksp<br/>ZIP 容器 + 场景 + 资源"]
+    D --> E
+    E --> F["CRC 自检 + 原子落位<br/>.ksp.tmp → .ksp"]
+    F --> G["KeyShot 打开<br/>贴图不缺失"]
+```
 
 1. `.ksp` 本质是 ZIP 压缩包。
 2. 扫描 `.bip` 二进制，提取其中引用的贴图 / 环境文件路径（如 `/KS/./startup.hdr`）。
